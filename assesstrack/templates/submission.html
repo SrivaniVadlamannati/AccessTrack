@@ -1,0 +1,39 @@
+{% extends "base.html" %}{% block title %}{{ s.program }}{% endblock %}
+{% block body %}
+<p class="mono"><a href="{{ url_for('views.submissions') }}">← submissions</a></p>
+<div class="spread">
+  <div>
+    <h1>{{ s.program }}</h1>
+    <p class="sub">{{ s.code }} · {{ s.college }} · {{ s.level }}<br>{{ s.coordinator }} · {{ s.email }}</p>
+  </div>
+  <div style="text-align:right">
+    <span class="tag s-{{ s.status or 'none' }}" id="statusTag" style="font-size:14px">{{ s.status_label }}</span>
+    <p class="mono" style="margin:6px 0 0"><span id="openCount">{{ s.open_items if s.open_items is not none else '?' }}</span> open item(s)</p>
+  </div>
+</div>
+<div class="grid2">
+  <div class="card">
+    <p class="mono" style="margin-top:0">{{ s.cycle_label }} cycle · due {{ s.due_date|day }} · submitted {{ s.submitted_at|day }}
+      {% if s.submitted_at and s.submitted_at[:10] > s.due_date %}<span class="tag s-late">late</span>{% endif %}</p>
+    {% for kind, title in [('document','Documents'), ('section','Assessment plan sections')] %}
+    <h2>{{ title }}</h2>
+    {% for it in s['items'] if it.kind == kind %}
+    <label class="check {{ 'have' if it.present }}">
+      <input type="checkbox" data-sid="{{ s.id }}" data-req="{{ it.requirement_id }}" {{ 'checked' if it.present }}>
+      <span class="name"><b>{{ it.name }}</b><br><span class="muted" style="font-size:13px">{{ it.description }}</span></span>
+      <span class="meta">{% if it.received_at %}received {{ it.received_at|day }}<br>by {{ it.updated_by }}{% elif it.present %}in packet{% else %}<span style="color:var(--oxblood)">missing</span>{% endif %}</span>
+    </label>
+    {% endfor %}{% endfor %}
+  </div>
+  <div>
+    <h2 style="margin-top:0">Notes for this program</h2>
+    <textarea id="notes" data-sid="{{ s.id }}" placeholder="e.g. emailed Oct 20, coordinator on leave until Nov 3">{{ s.notes or '' }}</textarea>
+    <p><button class="btn small" id="saveNotes">Save note</button></p>
+    <h2>Earlier cycles</h2>
+    <table>{% for p in s.previous %}<tr><td>{{ p.label }}</td><td><span class="tag s-{{ p.status or 'none' }}">{{ LABELS.get(p.status, 'Not reviewed') }}</span></td><td class="num mono">{{ p.open_items or 0 }} open</td></tr>{% endfor %}</table>
+    <h2>Record history</h2>
+    <table>{% for h in s.history %}<tr><td class="mono">{{ h.at|stamp }}</td><td>{{ h.username }}</td><td>{{ h.action.replace('_',' ') }} · {{ h.detail }}</td></tr>
+    {% else %}<tr><td class="muted">no updates recorded yet</td></tr>{% endfor %}</table>
+  </div>
+</div>
+{% endblock %}

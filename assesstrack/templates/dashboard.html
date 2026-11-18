@@ -1,0 +1,48 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% block body %}
+<div class="spread">
+  <div>
+    <h1>{{ cycle.label }} annual reports</h1>
+    <p class="sub">due {{ cycle.due_date|day }} · {{ s.total }} programs · {{ s.received }} reports received
+      {% if s.last_run %}· last reviewed {{ s.last_run.run_at|stamp }} by {{ s.last_run.run_by }}{% endif %}</p>
+  </div>
+  <div class="row">
+    <a class="btn" href="{{ url_for('api.export_checklist', cycle=cycle.id) }}">Checklist .xlsx</a>
+    <button class="btn primary" id="runReview" data-cycle="{{ cycle.id }}" data-label="{{ cycle.label }}">Run review</button>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><b>{{ s.received }}</b><small>of {{ s.total }} received</small></div>
+  <div class="stat good"><b>{{ s.complete }}</b><small>complete, on time</small></div>
+  <div class="stat"><b>{{ s.late }}</b><small>complete, late</small></div>
+  <div class="stat warn"><b>{{ s.missing + s.not_submitted }}</b><small>need follow up</small></div>
+  <div class="stat {{ 'warn' if s.on_time_complete_pct < 80 else 'good' }}"><b>{{ s.on_time_complete_pct }}%</b><small>on time and complete</small></div>
+</div>
+{% if s.unreviewed %}<p class="mono" style="color:var(--oxblood)">{{ s.unreviewed }} submissions haven't been reviewed yet. Press Run review.</p>{% endif %}
+
+<div class="grid2" style="margin-top:20px">
+  <div>
+    <div class="log" id="runLog">{% if s.last_run %}last run {{ s.last_run.run_at|stamp }} · {{ s.last_run.total }} checked in {{ s.last_run.duration_ms }} ms
+open items: {{ s.last_run.open_items }}{% if s.first_run and s.first_run.id != s.last_run.id %} (first run this cycle: {{ s.first_run.open_items }}){% endif %}{% else %}no review has been run for this cycle yet.{% endif %}</div>
+
+    <h2>Most often missing</h2>
+    {% set mx = (gaps.by_requirement|map(attribute='missing')|map('int')|max) if gaps.by_requirement else 1 %}
+    <div class="bars">
+      {% for r in gaps.by_requirement %}
+      <span>{{ r.name }}</span><div class="bar {{ 'red' if r.kind == 'section' }}" style="width:{{ (100 * (r.missing or 0) / (mx or 1))|round }}%"></div><span class="num">{{ r.missing or 0 }}</span>
+      {% endfor %}
+    </div>
+    <p class="mono muted">mustard = documents · oxblood = plan sections</p>
+  </div>
+  <div>
+    <h2 style="margin-top:0">On time and complete, by cycle</h2>
+    <div class="trend">{% for t in gaps.trend %}<div style="height:{{ (t.pct or 0) * 1.3 }}px"><span>{{ (t.pct or 0)|int }}%</span></div>{% endfor %}</div>
+    <div class="trend-labels">{% for t in gaps.trend %}<span>{{ t.label }}</span>{% endfor %}</div>
+
+    <h2>Recent activity</h2>
+    <table>{% for a in activity %}<tr><td class="mono">{{ a.at|stamp }}</td><td>{{ a.username }}</td><td>{{ a.action.replace('_',' ') }}{% if a.program %} · {{ a.program }}{% endif %}<br><span class="muted">{{ a.detail }}</span></td></tr>
+    {% else %}<tr><td class="muted">nothing yet</td></tr>{% endfor %}</table>
+  </div>
+</div>
+{% endblock %}

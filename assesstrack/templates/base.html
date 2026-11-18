@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}AssessTrack{% endblock %} · AssessTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Libre+Franklin:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% if g.user %}
+<header class="top">
+  <a class="brand" href="{{ url_for('views.dashboard') }}">Assess<span>Track</span></a>
+  {% set ep = request.endpoint %}
+  <nav>
+    <a href="{{ url_for('views.dashboard') }}" class="{{ 'on' if ep == 'views.dashboard' }}">Dashboard</a>
+    <a href="{{ url_for('views.submissions') }}" class="{{ 'on' if ep in ('views.submissions','views.submission') }}">Submissions</a>
+    <a href="{{ url_for('views.reminders') }}" class="{{ 'on' if ep == 'views.reminders' }}">Reminders</a>
+    <a href="{{ url_for('views.gaps') }}" class="{{ 'on' if ep == 'views.gaps' }}">Gaps</a>
+    <a href="{{ url_for('views.import_page') }}" class="{{ 'on' if ep == 'views.import_page' }}">Import</a>
+    <a href="{{ url_for('views.activity') }}" class="{{ 'on' if ep == 'views.activity' }}">Activity</a>
+  </nav>
+  <div class="who">
+    {% if cycle is defined and all_cycles %}
+    cycle <select id="cycleSwitch">{% for c in all_cycles %}<option value="{{ c.id }}" {{ 'selected' if c.id == cycle.id }}>{{ c.label }}</option>{% endfor %}</select>
+    {% endif %}
+    <span>{{ g.user.username }}</span><a href="{{ url_for('auth.logout') }}">log out</a>
+  </div>
+</header>
+{% endif %}
+<main>
+{% for m in get_flashed_messages() %}<div class="flash">{{ m }}</div>{% endfor %}
+{% block body %}{% endblock %}
+</main>
+<div class="toast" id="toast"></div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

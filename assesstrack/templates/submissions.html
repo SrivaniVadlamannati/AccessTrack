@@ -1,0 +1,32 @@
+{% extends "base.html" %}{% block title %}Submissions{% endblock %}
+{% block body %}
+<h1>Submissions</h1>
+<p class="sub">{{ cycle.label }} · {{ rows|length }} shown · click a program to open its checklist</p>
+<form class="filters" method="get">
+  <input type="text" name="q" value="{{ args.get('q','') }}" placeholder="program, code or coordinator" style="min-width:240px">
+  <select name="college"><option value="">all colleges</option>{% for c in colleges %}<option {{ 'selected' if args.get('college') == c }}>{{ c }}</option>{% endfor %}</select>
+  <select name="status"><option value="">any status</option>{% for k, v in LABELS.items() %}<option value="{{ k }}" {{ 'selected' if args.get('status') == k }}>{{ v }}</option>{% endfor %}</select>
+  <input type="hidden" name="sort" value="{{ args.get('sort','program') }}">
+  <button class="btn small" type="submit">Filter</button>
+  <a class="btn small" href="{{ url_for('views.submissions') }}">Clear</a>
+</form>
+{% macro sortlink(key, label) %}<a href="?{{ dict(args, sort=key)|urlencode }}">{{ label }}{% if args.get('sort','program') == key %} ▾{% endif %}</a>{% endmacro %}
+<div style="overflow:auto">
+<table>
+  <thead><tr><th>{{ sortlink('program','Program') }}</th><th>{{ sortlink('college','College') }}</th><th>{{ sortlink('coordinator','Coordinator') }}</th>
+  <th>{{ sortlink('submitted','Submitted') }}</th><th>{{ sortlink('status','Status') }}</th><th>{{ sortlink('open','Missing') }}</th></tr></thead>
+  <tbody>
+  {% for r in rows %}
+  <tr class="click" data-href="{{ url_for('views.submission', sid=r.id) }}">
+    <td><b>{{ r.program }}</b><br><span class="mono muted">{{ r.code }} · {{ r.level }}</span></td>
+    <td>{{ r.college }}</td><td>{{ r.coordinator }}</td><td class="mono">{{ r.submitted_at|day }}</td>
+    <td><span class="tag s-{{ r.status or 'none' }}">{{ r.status_label }}</span></td>
+    <td>{% if not r.status %}<span class="muted mono">not reviewed</span>
+        {% elif r.status == 'not_submitted' %}<span class="muted mono">whole packet</span>
+        {% else %}{% for m in r.missing %}<span class="tag s-missing">{{ m }}</span>{% else %}<span class="muted mono">none</span>{% endfor %}{% endif %}</td>
+  </tr>
+  {% else %}<tr><td colspan="6" class="muted">No submissions match.</td></tr>{% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}{% block title %}Import{% endblock %}
+{% block body %}
+<h1>Import submissions</h1>
+<p class="sub">bring in an export from the assessment software or a tracking spreadsheet · {{ cycle.label }} cycle</p>
+<div class="grid2">
+  <div class="card">
+    <form id="importForm" data-cycle="{{ cycle.id }}">
+      <p>Choose a <code>.csv</code> or <code>.xlsx</code> file. Each row updates that program's submission for the {{ cycle.label }} cycle, or creates one.</p>
+      <p><input type="file" name="file" accept=".csv,.xlsx" required></p>
+      <p><button class="btn primary" type="submit">Upload</button> <a class="btn" href="{{ url_for('views.import_template') }}">Download template</a></p>
+    </form>
+    <div id="importResult"></div>
+  </div>
+  <div>
+    <h2 style="margin-top:0">Columns</h2>
+    <table>
+      <tr><td><code>program_code</code></td><td>e.g. BIOL-BS. Must match a program.</td></tr>
+      <tr><td><code>submitted_at</code></td><td>YYYY-MM-DD. Blank if nothing received.</td></tr>
+      {% for r in reqs %}<tr><td><code>{{ r.name }}</code></td><td>Y or N · {{ r.description }}</td></tr>{% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}

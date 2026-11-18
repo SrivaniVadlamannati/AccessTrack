@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}Activity{% endblock %}
+{% block body %}
+<h1>Activity</h1>
+<p class="sub">every update made through AssessTrack, newest first</p>
+<div class="grid2">
+  <div>
+    <table><tr><th>When</th><th>Who</th><th>What</th></tr>
+    {% for a in rows %}<tr><td class="mono">{{ a.at|stamp }}</td><td>{{ a.username }}</td><td>{{ a.action.replace('_',' ') }}{% if a.program %} · <a href="{{ url_for('views.submission', sid=a.submission_id) }}">{{ a.program }}</a>{% endif %}<br><span class="muted">{{ a.detail }}</span></td></tr>{% endfor %}</table>
+  </div>
+  <div>
+    <h2 style="margin-top:0">Review runs · {{ cycle.label }}</h2>
+    <table><tr><th>Run</th><th class="num">Complete</th><th class="num">Flagged</th><th class="num">Open</th><th class="num">ms</th></tr>
+    {% for r in runs %}<tr><td class="mono">{{ r.run_at|stamp }}<br>{{ r.run_by }}</td><td class="num">{{ r.complete }}</td><td class="num">{{ r.missing + r.not_submitted }}</td><td class="num">{{ r.open_items }}</td><td class="num">{{ r.duration_ms }}</td></tr>
+    {% else %}<tr><td colspan="5" class="muted">no runs yet</td></tr>{% endfor %}</table>
+  </div>
+</div>
+{% endblock %}

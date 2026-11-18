@@ -1,0 +1,121 @@
+id,code,name,level,college,coordinator_id
+1,BIOL-BS,Biology BS,Undergraduate,Arts & Sciences,8
+2,CHEM-BS,Chemistry BS,Undergraduate,Arts & Sciences,15
+3,ENGL-BA,English BA,Undergraduate,Arts & Sciences,22
+4,HIST-BA,History BA,Undergraduate,Arts & Sciences,29
+5,MATH-BS,Mathematics BS,Undergraduate,Arts & Sciences,36
+6,PHYS-BS,Physics BS,Undergraduate,Arts & Sciences,7
+7,PSYC-BA,Psychology BA,Undergraduate,Arts & Sciences,14
+8,SOCI-BA,Sociology BA,Undergraduate,Arts & Sciences,21
+9,PHIL-BA,Philosophy BA,Undergraduate,Arts & Sciences,28
+10,PS-BA,Political Science BA,Undergraduate,Arts & Sciences,35
+11,GEOS-BS,Geosciences BS,Undergraduate,Arts & Sciences,6
+12,ANTH-BA,Anthropology BA,Undergraduate,Arts & Sciences,13
+13,BIOL-MS,Biology MS,Graduate,Arts & Sciences,20
+14,ENGL-MA,English MA,Graduate,Arts & Sciences,27
+15,HIST-MA,History MA,Graduate,Arts & Sciences,34
+16,PSYC-PHD,Psychology PhD,Doctoral,Arts & Sciences,5
+17,CHEM-MS,Chemistry MS,Graduate,Arts & Sciences,12
+18,MATH-MS,Mathematics MS,Graduate,Arts & Sciences,19
+19,SOCI-MA,Sociology MA,Graduate,Arts & Sciences,26
+20,GEOG-MS,Geography MS,Graduate,Arts & Sciences,33
+21,RS-BA,Religious Studies BA,Undergraduate,Arts & Sciences,4
+22,WL-BA,World Languages BA,Undergraduate,Arts & Sciences,11
+23,NEUR-BS,Neuroscience BS,Undergraduate,Arts & Sciences,18
+24,ES-BS,Environmental Science BS,Undergraduate,Arts & Sciences,25
+25,LING-BA,Linguistics BA,Undergraduate,Arts & Sciences,32
+26,STAT-BS,Statistics BS,Undergraduate,Arts & Sciences,3
+27,STAT-MS,Statistics MS,Graduate,Arts & Sciences,10
+28,PHIL-MA,Philosophy MA,Graduate,Arts & Sciences,17
+29,ACCO-BBA,Accounting BBA,Undergraduate,Business,24
+30,FINA-BBA,Finance BBA,Undergraduate,Business,31
+31,MARK-BBA,Marketing BBA,Undergraduate,Business,2
+32,MANA-BBA,Management BBA,Undergraduate,Business,9
+33,CIS-BBA,Computer Information Systems BBA,Undergraduate,Business,16
+34,RM-BBA,Risk Management BBA,Undergraduate,Business,23
+35,RE-BBA,Real Estate BBA,Undergraduate,Business,30
+36,HOSP-BBA,Hospitality BBA,Undergraduate,Business,1
+37,-MBA,MBA,Graduate,Business,8
+38,ACCO-MPA,Accountancy MPA,Graduate,Business,15
+39,ANAL-MS,Analytics MS,Graduate,Business,22
+40,FINA-MS,Finance MS,Graduate,Business,29
+41,MARK-MS,Marketing MS,Graduate,Business,36
+42,IS-PHD,Information Systems PhD,Doctoral,Business,7
+43,BA-PHD,Business Administration PhD,Doctoral,Business,14
+44,AS-BBA,Actuarial Science BBA,Undergraduate,Business,21
+45,ECON-BBA,Economics BBA,Undergraduate,Business,28
+46,GB-MIB,Global Business MIB,Graduate,Business,35
+47,SC-BBA,Supply Chain BBA,Undergraduate,Business,6
+48,HR-MS,Human Resources MS,Graduate,Business,13
+49,EC-BSE,Early Childhood BSE,Undergraduate,Education & Human Development,20
+50,ML-BSE,Middle Level BSE,Undergraduate,Education & Human Development,27
+51,SE-MED,Special Education MEd,Graduate,Education & Human Development,34
+52,EL-EDS,Educational Leadership EdS,Graduate,Education & Human Development,5
+53,COUN-MS,Counseling MS,Graduate,Education & Human Development,12
+54,KINE-BS,Kinesiology BS,Undergraduate,Education & Human Development,19
+55,TE-MAT,Teaching ESOL MAT,Graduate,Education & Human Development,26
+56,IT-MS,Instructional Technology MS,Graduate,Education & Human Development,33
+57,SP-EDS,School Psychology EdS,Graduate,Education & Human Development,4
+58,ES-MS,Exercise Science MS,Graduate,Education & Human Development,11
+59,LITE-MED,Literacy MEd,Graduate,Education & Human Development,18
+60,EP-PHD,Educational Policy PhD,Doctoral,Education & Human Development,25
+61,SA-MS,Sport Administration MS,Graduate,Education & Human Development,32
+62,ME-MAT,Mathematics Education MAT,Graduate,Education & Human Development,3
+63,SE-MAT,Science Education MAT,Graduate,Education & Human Development,10
+64,CP-PHD,Counseling Psychology PhD,Doctoral,Education & Human Development,17
+65,NURS-BSN,Nursing BSN,Undergraduate,Nursing & Health Professions,24
+66,NURS-MSN,Nursing MSN,Graduate,Nursing & Health Professions,31
+67,NURS-DNP,Nursing DNP,Doctoral,Nursing & Health Professions,2
+68,NUTR-BS,Nutrition BS,Undergraduate,Nursing & Health Professions,9
+69,NUTR-MS,Nutrition MS,Graduate,Nursing & Health Professions,16
+70,RT-BS,Respiratory Therapy BS,Undergraduate,Nursing & Health Professions,23
+71,PT-DPT,Physical Therapy DPT,Doctoral,Nursing & Health Professions,30
+72,OT-MOT,Occupational Therapy MOT,Graduate,Nursing & Health Professions,1
+73,HI-MS,Health Informatics MS,Graduate,Nursing & Health Professions,8
+74,HA-MSHA,Health Administration MSHA,Graduate,Nursing & Health Professions,15
+75,PH-MPH,Public Health MPH,Graduate,Nursing & Health Professions,22
+76,PH-BS,Public Health BS,Undergraduate,Nursing & Health Professions,29
+77,BIOS-PHD,Biostatistics PhD,Doctoral,Nursing & Health Professions,36
+78,EPID-MS,Epidemiology MS,Graduate,Nursing & Health Professions,7
+79,DH-BS,Dental Hygiene BS,Undergraduate,Nursing & Health Professions,14
+80,SLP-MS,Speech Language Pathology MS,Graduate,Nursing & Health Professions,21
+81,AD-BFA,Art & Design BFA,Undergraduate,Arts,28
+82,MUSI-BM,Music BM,Undergraduate,Arts,35
+83,FM-BA,Film & Media BA,Undergraduate,Arts,6
+84,THEA-BA,Theatre BA,Undergraduate,Arts,13
+85,JOUR-BA,Journalism BA,Undergraduate,Arts,20
+86,COMM-BA,Communication BA,Undergraduate,Arts,27
+87,MUSI-MM,Music MM,Graduate,Arts,34
+88,AH-MA,Art History MA,Graduate,Arts,5
+89,SA-MFA,Studio Art MFA,Graduate,Arts,12
+90,ID-BFA,Interior Design BFA,Undergraduate,Arts,19
+91,MM-BS,Music Management BS,Undergraduate,Arts,26
+92,CW-MFA,Creative Writing MFA,Graduate,Arts,33
+93,DANC-BA,Dance BA,Undergraduate,Arts,4
+94,GD-BFA,Graphic Design BFA,Undergraduate,Arts,11
+95,CJ-BS,Criminal Justice BS,Undergraduate,Policy Studies,18
+96,PP-BS,Public Policy BS,Undergraduate,Policy Studies,25
+97,PA-MPA,Public Administration MPA,Graduate,Policy Studies,32
+98,UP-MS,Urban Policy MS,Graduate,Policy Studies,3
+99,ECON-BA,Economics BA,Undergraduate,Policy Studies,10
+100,ECON-MA,Economics MA,Graduate,Policy Studies,17
+101,ECON-PHD,Economics PhD,Doctoral,Policy Studies,24
+102,NL-MS,Nonprofit Leadership MS,Graduate,Policy Studies,31
+103,SW-BSW,Social Work BSW,Undergraduate,Policy Studies,2
+104,SW-MSW,Social Work MSW,Graduate,Policy Studies,9
+105,CJ-MS,Criminal Justice MS,Graduate,Policy Studies,16
+106,PP-PHD,Public Policy PhD,Doctoral,Policy Studies,23
+107,CS-BS,Computer Science BS,Undergraduate,Computing & Engineering,30
+108,CS-MS,Computer Science MS,Graduate,Computing & Engineering,1
+109,DS-BS,Data Science BS,Undergraduate,Computing & Engineering,8
+110,CYBE-MS,Cybersecurity MS,Graduate,Computing & Engineering,15
+111,IT-BS,Information Technology BS,Undergraduate,Computing & Engineering,22
+112,CS-PHD,Computer Science PhD,Doctoral,Computing & Engineering,29
+113,ADA-MS,Applied Data Analytics MS,Graduate,Computing & Engineering,36
+114,SE-BS,Software Engineering BS,Undergraduate,Computing & Engineering,7
+115,EE-BS,Electrical Engineering BS,Undergraduate,Computing & Engineering,14
+116,ME-BS,Mechanical Engineering BS,Undergraduate,Computing & Engineering,21
+117,ET-BS,Engineering Technology BS,Undergraduate,Computing & Engineering,28
+118,BIOI-MS,Bioinformatics MS,Graduate,Computing & Engineering,35
+119,GD-BS,Game Design BS,Undergraduate,Computing & Engineering,6
+120,CB-PHD,Computational Biology PhD,Doctoral,Computing & Engineering,13

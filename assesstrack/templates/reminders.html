@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}Reminders{% endblock %}
+{% block body %}
+<div class="spread">
+  <div><h1>Reminder list</h1>
+  <p class="sub">{{ cycle.label }} · {{ groups|length }} coordinators · one note per person covering all of their programs</p></div>
+  <a class="btn primary" href="{{ url_for('api.export_reminders', cycle=cycle.id) }}">Download reminders .xlsx</a>
+</div>
+{% if s.unreviewed %}<div class="flash">Some submissions haven't been reviewed. Run the review on the dashboard first so this list is current.</div>{% endif %}
+{% for g in groups %}
+<div class="remind">
+  <div class="spread"><div><b>{{ g.coordinator }}</b> <span class="mono muted">{{ g.email }} · {{ g.programs|length }} program{{ 's' if g.programs|length > 1 }}</span></div>
+  <button class="btn small" data-copy="#msg{{ loop.index }}">Copy message</button></div>
+  <div class="mono" style="margin-top:6px">Subject: {{ g.subject }}</div>
+  <pre id="msg{{ loop.index }}">{{ g.body }}</pre>
+</div>
+{% else %}<p>Nothing to chase. Every program is complete.</p>{% endfor %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block title %}Gaps{% endblock %}
+{% block body %}
+<h1>Where reports fall short</h1>
+<p class="sub">{{ cycle.label }} · counts only reports that were received</p>
+<div class="grid2">
+  <div>
+    <h2>By requirement</h2>
+    <table><tr><th>Requirement</th><th>Kind</th><th class="num">Missing</th><th class="num">Share</th></tr>
+    {% for r in gaps.by_requirement %}<tr><td>{{ r.name }}</td><td class="mono">{{ r.kind }}</td><td class="num">{{ r.missing or 0 }}</td><td class="num">{{ ((100 * (r.missing or 0) / r.received) if r.received else 0)|round|int }}%</td></tr>{% endfor %}</table>
+  </div>
+  <div>
+    <h2>By cycle</h2>
+    <table><tr><th>Cycle</th><th class="num">Programs</th><th class="num">On time & complete</th></tr>
+    {% for t in gaps.trend %}<tr><td>{{ t.label }}</td><td class="num">{{ t.total }}</td><td class="num">{{ t.complete or 0 }} ({{ (t.pct or 0)|int }}%)</td></tr>{% endfor %}</table>
+  </div>
+</div>
+<h2>By college</h2>
+<table><tr><th>College</th><th class="num">Programs</th><th class="num">Complete</th><th class="num">Late</th><th class="num">Missing items</th><th class="num">Not submitted</th><th class="num">Open items</th></tr>
+{% for c in gaps.by_college %}<tr><td><a href="{{ url_for('views.submissions', college=c.college) }}">{{ c.college }}</a></td><td class="num">{{ c.programs }}</td><td class="num">{{ c.complete or 0 }}</td><td class="num">{{ c.late or 0 }}</td><td class="num">{{ c.missing or 0 }}</td><td class="num">{{ c.not_submitted or 0 }}</td><td class="num"><b>{{ c.open_items }}</b></td></tr>{% endfor %}</table>
+{% endblock %}

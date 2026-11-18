@@ -1,0 +1,11 @@
+id,kind,name,description
+1,document,Assessment Plan,"Current plan listing outcomes, measures and targets"
+2,document,Curriculum Map,Courses mapped to each learning outcome (I/R/M)
+3,document,Data Summary,Aggregated results for every outcome assessed this cycle
+4,document,Action Plan,Changes the program will make based on results
+5,section,Mission,Program mission statement
+6,section,Learning Outcomes,Measurable student learning outcomes
+7,section,Measures,At least one direct measure per outcome
+8,section,Targets,Numeric performance target per measure
+9,section,Findings,Results compared against targets
+10,section,Use of Results,How findings were discussed and used
